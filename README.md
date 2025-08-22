@@ -29,6 +29,7 @@ kgm2flac-backend/
 cd kgm2flac-backend
 go mod init kgm2flac-backend
 go mod tidy
+go mod download
 ```
 
 #### 1.2 交叉编译
@@ -39,11 +40,20 @@ go mod tidy
 # 构建 Linux amd64 二进制
 CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o kgm2flac-linux-amd64 ./cmd/server
 
+# 构建 Linux arm64 二进制
+CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o kgm2flac-linux-arm64 ./cmd/server
+
 # 构建 macOS amd64 二进制（Intel）
 CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o kgm2flac-darwin-amd64 ./cmd/server
 
 # 构建 macOS arm64 二进制（Apple Silicon M1/M2）
 CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -o kgm2flac-darwin-arm64 ./cmd/server
+
+# 构建 Windows 64位 可执行 .exe（Windows powershell）
+$env:CGO_ENABLED="0"; $env:GOOS="windows"; $env:GOARCH="amd64"; go build -o kgm2flac-windows-amd64.exe ./cmd/server
+
+# 构建 Windows 64位 可执行 .exe（Linux shell）
+CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o kgm2flac-windows-amd64.exe ./cmd/server
 ```
 
 ### 2. 运行程序
