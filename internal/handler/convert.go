@@ -317,7 +317,7 @@ const page = `<!doctype html>
         </div>
         
         <div class="footer">
-            <p>© 2024 KGM to FLAC Converter | 后端版本 {{.Version}}</p>
+            <p>© 2025 KGM to FLAC Converter | 后端版本 {{.Version}}</p>
         </div>
     </div>
 
